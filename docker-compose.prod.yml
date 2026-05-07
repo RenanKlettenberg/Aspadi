@@ -1,0 +1,45 @@
+services:
+  frontend:
+    build:
+      context: ./app
+      dockerfile: Dockerfile.prod # Aponta para o de prod
+    container_name: app_frontend
+    ports:
+      - "${FRONT_PORT}:3000"
+    volumes:
+      - ./app:/app #Permite ver as alterações em tempo real
+      - /app/node_modules # Vai previnir erros
+    environment:
+      - REACT_APP_API_URL=http://localhost:${APP_PORT}
+
+  backend:
+    build: ./src
+    container_name: app_backend
+    ports:
+      - "${APP_PORT}:80"
+    volumes:
+      - ./src:/var/www/html #Permite ver as alterações em tempo real
+    environment:
+      DB_HOST: db #Conecta com o container do banco
+      DB_NAME: ${DB}
+      DB_USER: ${USER}
+      DB_PASSWORD: ${PASSWORD}
+    depends_on:
+      - db #Conecta com o container do banco
+
+  db:
+    image: postgres:15-alpine
+    container_name: engine_db
+    restart: always
+    environment:
+      POSTGRES_DB: ${NAME}
+      POSTGRES_USER: ${USER}
+      POSTGRES_PASSWORD: ${PASSWORD}
+    ports:
+      - "${DB_PORT}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  pgdata:

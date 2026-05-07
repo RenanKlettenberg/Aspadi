@@ -1,0 +1,9 @@
+#Pastas da IDE
+.vscode
+
+#Segurança
+.env
+
+#Aplicativos
+app/node_modules
+src/vendor

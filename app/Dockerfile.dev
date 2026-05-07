@@ -1,0 +1,16 @@
+FROM node:20-slim
+
+WORKDIR /app
+
+# Copia os arquivos de dependência
+COPY package*.json ./
+
+# Aumentamos o tempo de espera da rede e limpamos o cache após instalar
+RUN npm install --network-timeout=100000
+
+# Copia o restante dos arquivos
+COPY . .
+
+EXPOSE 3000
+
+CMD ["npm", "start"]

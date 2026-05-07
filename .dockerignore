@@ -1,0 +1,21 @@
+# Pastas de IDE
+.vscode/
+.idea/
+
+# Dependências (O container deve gerenciar isso)
+**/node_modules
+**/vendor
+
+# Git 
+.git
+.gitignore
+
+# Produção
+**/build
+**/dist
+
+# Docker (Não precisa copiar as receitas para dentro do bolo)
+docker-compose.yml
+docker-compose.*.yml
+Dockerfile*
+.dockerignore
