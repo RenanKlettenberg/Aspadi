@@ -17,7 +17,7 @@ class Database
             $connection = new \PDO($_ENV['DRIVER'] . ":host=" . $_ENV['HOST'] . ";port=" . $_ENV['DB_PORT'] . ";dbname=" . $_ENV['DB'] . ";user=" . $_ENV['USER'] . ";password=" . $_ENV['PASSWORD']);
             return $connection;
         } catch (\Throwable $e) {
-            throw new \Exception($e->getMessage(), ResponseCode::ERRO_DE_CONEXAO);
+            throw new ErroInterno($e->getMessage(), ResponseCode::ERRO_DE_CONEXAO);
         }
     }
 
@@ -29,7 +29,7 @@ class Database
         if (!empty($_ENV)) {
             return $this->dbo = $this->getConexao();
         }
-        throw new \Exception("Arquivo .env não definido", ResponseCode::FALHA_ENV);
+        throw new ErroInterno("Arquivo .env não definido", ResponseCode::FALHA_ENV);
     }
     public function beginTransaction()
     {

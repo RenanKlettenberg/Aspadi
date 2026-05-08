@@ -28,7 +28,7 @@ class Conection
             }
             return $retorno;
         } catch (\Throwable $e) {
-            throw new \Exception($e->getMessage(), ResponseCode::ERRO_SQL);
+            throw new ErroInterno($e->getMessage(), ResponseCode::ERRO_SQL);
         }
     }
     function executeDelete($sql, $parametros)
@@ -45,7 +45,7 @@ class Conection
             }
             return $retorno;
         } catch (\Throwable $e) {
-            throw new \Exception($e->getMessage(), ResponseCode::ERRO_SQL);
+            throw new ErroInterno($e->getMessage(), ResponseCode::ERRO_SQL);
         }
     }
     function executeUpdate($sql, $parametros = false)
@@ -66,7 +66,7 @@ class Conection
             }
             return $retorno;
         } catch (\Throwable $e) {
-            throw new \Exception($e->getMessage(), ResponseCode::ERRO_SQL);
+            throw new ErroInterno($e->getMessage(), ResponseCode::ERRO_SQL);
         }
     }
     public function executeTransaction($sql, $parametros = false)
@@ -88,7 +88,7 @@ class Conection
             }
             return $retorno;
         } catch (\Throwable $e) {
-            throw new \Exception($e->getMessage(), ResponseCode::ERRO_SQL);
+            throw new ErroInterno($e->getMessage(), ResponseCode::ERRO_SQL);
         }
     }
 }

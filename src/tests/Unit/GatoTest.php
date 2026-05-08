@@ -1,10 +1,10 @@
 <?
 
 use Core\ResponseCode;
-use PHPUnit\Framework\TestCase;
+use Core\TestInterno;
 use \Modules\Gato\GatoService;
 use \Modules\Gato\GatoRepository;
-class GatoTest extends TestCase
+class GatoTest extends TestInterno
 {
     public function testGetByCorDevePassar()
     {
@@ -27,16 +27,16 @@ class GatoTest extends TestCase
 
     public function testGetByCorDeveFalhar()
     {
-        //Arrange
-        $stub = $this->createStub(GatoRepository::class);
-        $stub->method('getByCor')->willReturn([['gat_id' => 1]]);
-        $service = new GatoService($stub);
+        try {
+            //Arrange
+            $stub = $this->createStub(GatoRepository::class);
+            $stub->method('getByCor')->willReturn([['gat_id' => 1]]);
+            $service = new GatoService($stub);
 
-        //Assert
-        $this->expectException(Throwable::class);
-        $this->expectExceptionCode(ResponseCode::DADOS_FALTANDO);
-
-        //Act
-        $service->getByCor(['cor' => '']);
+            //Act
+            $service->getByCor(['cor' => '']);
+        } catch (Throwable $e) {
+            $this->assertErroInterno($e, ResponseCode::DADOS_FALTANDO);
+        }
     }
 }

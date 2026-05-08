@@ -24,13 +24,12 @@ class Presenter
         ]));
     }
 
-    public static function handleException(\Throwable $e, $defaultCode = ResponseCode::ERRO_DESCONHECIDO)
+    public static function handleException($e, $defaultCode = ResponseCode::ERRO_DESCONHECIDO)
     {
-        $mensagem = ResponseMessage::get($e->getCode() ?? '');
-        $mensagemExiste = $mensagem !== ResponseMessage::DEFAULT_MSG;
+        $isErroInterno = $e instanceof ErroInterno;
 
-        if ($mensagemExiste) {
-            self::encerrar($e->getMessage(), $e->getCode());
+        if ($isErroInterno) {
+            self::encerrar($e->getMessage(), $e->getInternalCode());
         } else {
             self::encerrar($e->getMessage(), $defaultCode);
         }

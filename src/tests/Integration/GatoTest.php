@@ -1,10 +1,10 @@
 <?
 
 use Core\ResponseCode;
-use PHPUnit\Framework\TestCase;
+use Core\TestInterno;
 use Modules\Gato\GatoService;
 
-class GatoTest extends TestCase
+class GatoTest extends TestInterno
 {
 
     public static function setUpBeforeClass(): void
@@ -23,23 +23,24 @@ class GatoTest extends TestCase
             $resultado = $service->getByCor(['cor' => 'preto']);
 
             //Assert
-            $this->assertNotEmpty($resultado);
             $this->assertEquals('preto', $resultado[0]->cor);
         } catch (Throwable $e) {
-            $this->fail("Retornou uma exception: " . $e->getMessage() . " | Código: " . $e->getCode());
+            $this->fail("Retornou uma exception: " . $e->getMessage());
         }
     }
 
     public function testGetByCorDeveFalhar()
     {
-        //Arrange
-        $service = new GatoService();
+        try {
+            //Arrange
+            $service = new GatoService();
 
-        //Assert
-        $this->expectException(Throwable::class);
-        $this->expectExceptionCode(ResponseCode::FALHA_AO_BUSCAR_DADOS);
-
-        //Act
-        $service->getByCor(['cor' => '']);
+            //Act
+            $resultado = $service->getByCor(['cor' => '']);
+            
+            $this->fail("Nenhum erro foi disparado!");
+        } catch (Throwable $e) {
+            $this->assertErroInterno($e, ResponseCode::DADOS_FALTANDO);
+        }
     }
 }

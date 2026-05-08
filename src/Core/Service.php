@@ -19,12 +19,12 @@ abstract class Service
         $model = $this->repository->getModel();
         $validacao = $model->validarCampos($params);
         if ($validacao !== true) {
-            throw new \Exception("Os campos não passaram na validação da model.", $validacao);
+            throw new ErroInterno("Os campos não passaram na validação da model.", $validacao);
         }
 
         $id = $this->repository->insert($params);
         if (empty($id)) {
-            throw new \Exception("O ID do registro não foi retornado.", ResponseCode::FALHA_AO_INSERIR);
+            throw new ErroInterno("O ID do registro não foi retornado.", ResponseCode::FALHA_AO_INSERIR);
         }
 
         return $id;
@@ -35,12 +35,12 @@ abstract class Service
         $model = $this->repository->getModel();
         $validacao = $model->validarCampos($params, []);
         if ($validacao !== true) {
-            throw new \Exception("Os campos não passaram na validação da model.", $validacao);
+            throw new ErroInterno("Os campos não passaram na validação da model.", $validacao);
         }
 
         $rows = $this->repository->update($params, $id);
         if (empty($rows)) {
-            throw new \Exception("Nenhum registro no banco de dados foi afetado pelo update.", ResponseCode::FALHA_AO_ATUALIZAR);
+            throw new ErroInterno("Nenhum registro no banco de dados foi afetado pelo update.", ResponseCode::FALHA_AO_ATUALIZAR);
         }
 
         return $rows;
@@ -50,7 +50,7 @@ abstract class Service
     {
         $rows = $this->repository->delete($id);
         if (empty($rows)) {
-            throw new \Exception("Nenhum registro no banco de dados foi afetado pelo delete.", ResponseCode::FALHA_AO_DELETAR);
+            throw new ErroInterno("Nenhum registro no banco de dados foi afetado pelo delete.", ResponseCode::FALHA_AO_DELETAR);
         }
 
         return $rows;
