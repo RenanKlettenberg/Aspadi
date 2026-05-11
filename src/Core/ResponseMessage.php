@@ -24,6 +24,7 @@ class ResponseMessage
         ResponseCode::FALHA_RELATORIO => 'O sistema falhou em gerar o relatório.',
         ResponseCode::ERRO_EMAIL => 'O sistema falhou em enviar o e-mail.',
         ResponseCode::ERRO_GERAR_PDF => 'O sistema falhou em gerar o PDF.',
+        ResponseCode::ERRO_LOGIN => 'Erro ao fazer login!',
         ResponseCode::ERRO_SALVAR_ARQUIVO => 'O sistema falhou em salvar o arquivo.',
         ResponseCode::FALHA_AO_INSERIR => 'Parece que o sistema não conseguiu criar um novo registro!',
         ResponseCode::FALHA_AO_ATUALIZAR => 'Parece que o sistema não conseguiu atualizar o registro!',

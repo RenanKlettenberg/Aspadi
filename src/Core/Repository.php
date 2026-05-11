@@ -16,7 +16,7 @@ abstract class Repository
     {
         $sql = "SELECT " . implode(',', $this->model::CAMPOS) .
             " FROM " . $this->model::TABELA .
-            " ORDER BY " . (defined(get_class($this->model) . '::ORDER_BY') ? ($this->model::ORDER_BY[0] . ' ' . $this->model::ORDER_BY[1]) : ($this->model::PK . 'DESC'));
+            " ORDER BY " . (defined(get_class($this->model) . '::ORDER_BY') ? ($this->model::ORDER_BY[0] . ' ' . $this->model::ORDER_BY[1]) : ($this->model::PK . ' DESC'));
         return $this->con->execute($sql);
     }
 

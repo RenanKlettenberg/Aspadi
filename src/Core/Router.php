@@ -26,7 +26,7 @@ class Router
         $nameSpace = '\\Modules\\' . ucfirst($params[0]);
         $classe = $nameSpace . '\\' . ucfirst($params[0]) . 'Controller';
         if (!class_exists($classe)) {
-            Presenter::sair([], ResponseCode::CLASSE_INEXISTENTE);
+            Presenter::encerrar([], ResponseCode::CLASSE_INEXISTENTE);
         }
         $controller = new $classe();
 
@@ -38,7 +38,7 @@ class Router
                     return $controller->getById($params[1]);
                 } else {
                     if (!method_exists($classe, $params[1])) {
-                        Presenter::sair([], ResponseCode::METODO_INEXISTENTE);
+                        Presenter::encerrar([], ResponseCode::METODO_INEXISTENTE);
                     }
                     return $controller->{$params[1]}();
                 }
@@ -49,7 +49,7 @@ class Router
                     return $controller->update($params[1]);
                 } else {
                     if (!method_exists($classe, $params[1])) {
-                        Presenter::sair([], ResponseCode::METODO_INEXISTENTE);
+                        Presenter::encerrar([], ResponseCode::METODO_INEXISTENTE);
                     }
                     return $controller->{$params[1]}();
                 }
@@ -58,12 +58,12 @@ class Router
                     return $controller->delete($params[1]);
                 } else {
                     if (!method_exists($classe, $params[1])) {
-                        Presenter::sair([], ResponseCode::METODO_INEXISTENTE);
+                        Presenter::encerrar([], ResponseCode::METODO_INEXISTENTE);
                     }
                     return $controller->$params[1]($params[2]);
                 }
             default:
-                Presenter::sair([], ResponseCode::METODO_HTTP_NAO_SUPORTADO);
+                Presenter::encerrar([], ResponseCode::METODO_HTTP_NAO_SUPORTADO);
         }
     }
 
@@ -83,7 +83,7 @@ class Router
                 'trace' => $e->getTraceAsString()
             ];
 
-            Presenter::sair($body, ResponseCode::ERRO_SINTAXE);
+            Presenter::encerrar($body, ResponseCode::ERRO_SINTAXE);
         });
 
         register_shutdown_function(function () {
@@ -99,7 +99,7 @@ class Router
                     'msg' => $erro['message']
                 ];
 
-                Presenter::sair($body, ResponseCode::ERRO_SINTAXE);
+                Presenter::encerrar($body, ResponseCode::ERRO_SINTAXE);
             }
         });
     }

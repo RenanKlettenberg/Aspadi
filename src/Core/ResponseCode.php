@@ -26,6 +26,7 @@ class ResponseCode
     const FALHA_AO_DELETAR = 'E-11-010';
     const FALHA_ENV = 'E-12-011';
     const ERRO_DE_CONEXAO = 'E-1-012';
+    const ERRO_LOGIN = 'E-1-038';
 
     /* CLIENTE - 2 */
     const MUITAS_TENTATIVAS = 'A-2-013';
