@@ -14,7 +14,7 @@ class Database
     public function getConexao()
     {
         try {
-            $connection = new \PDO($_ENV['DRIVER'] . ":host=" . $_ENV['HOST'] . ";port=" . $_ENV['DB_PORT'] . ";dbname=" . $_ENV['DB'] . ";user=" . $_ENV['USER'] . ";password=" . $_ENV['PASSWORD']);
+            $connection = new \PDO($_ENV['DRIVER'] . ":host=" . $_ENV['HOST'] . ";port=" . $_ENV['DB_PORT_INTERNA'] . ";dbname=" . $_ENV['DB'] . ";user=" . $_ENV['USER'] . ";password=" . $_ENV['PASSWORD']);
             return $connection;
         } catch (\Throwable $e) {
             throw new ErroInterno($e->getMessage(), ResponseCode::ERRO_DE_CONEXAO);
