@@ -17,6 +17,7 @@ class ResponseMessage
         ResponseCode::ERRO_SINTAXE => 'Erro de sintáxe ou compilação capturado!',
         ResponseCode::ERRO_SQL => 'Um erro imprevisto ocorreu ao tentar passar instruções SQL para o banco de dados!',
         ResponseCode::METODO_HTTP_NAO_SUPORTADO => 'Método HTTP não suportado!',
+        ResponseCode::ROTA_NAO_INFORMADA => 'Nenhuma rota foi informada!',
 
             /* SERVIDOR - 1 */
         ResponseCode::FALHA_ENV => 'Arquivo de configuração (.env) não definido ou não encontrado!',

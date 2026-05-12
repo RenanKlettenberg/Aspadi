@@ -21,6 +21,10 @@ class Router
         ob_start();
         self::capturadorDeErros();
 
+        if(!isset($request['url']) && empty($request['url'])){
+            Presenter::encerrar([], ResponseCode::ROTA_NAO_INFORMADA);
+        }
+
         $params = explode('/', $request['url']);
 
         $nameSpace = '\\Modules\\' . ucfirst($params[0]);

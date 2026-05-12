@@ -14,6 +14,7 @@ class ResponseCode
     const METODO_HTTP_NAO_SUPORTADO = 'E-31-035';
     const METODO_INEXISTENTE = 'E-31-036';
     const CLASSE_INEXISTENTE = 'E-31-037';
+    const ROTA_NAO_INFORMADA = 'E-31-039';
 
     /* SERVIDOR - 1 */
     const ERRO_EMAIL = 'A-1-003';
