@@ -19,7 +19,7 @@ CREATE SCHEMA IF NOT EXISTS "system";
 -- DROP TABLE system.sys_usuario 
 CREATE TABLE IF NOT EXISTS system.sys_usuario (
 	usu_id SERIAL NOT NULL,
-	usu_email VARCHAR(255) NOT NULL,
+	usu_email VARCHAR(255) UNIQUE NOT NULL,
 	usu_nome VARCHAR(255) NOT NULL,
 	usu_password TEXT NOT NULL,
 	CONSTRAINT pk_sys_usuario_usu_id PRIMARY KEY (usu_id)
