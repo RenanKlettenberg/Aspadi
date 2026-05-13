@@ -28,11 +28,14 @@ class ResponseCode
     const FALHA_ENV = 'E-12-011';
     const ERRO_DE_CONEXAO = 'E-1-012';
     const ERRO_LOGIN = 'E-1-038';
+    const ERRO_SENHA = 'E-1-042';
 
     /* CLIENTE - 2 */
     const MUITAS_TENTATIVAS = 'A-2-013';
     const LOGIN_INVALIDO = 'A-2-014';
     const LANCAMENTO_DUPLICADO = 'A-2-015';
+    const USUARIO_NAO_ENCONTRADO = 'A-2-040';
+    const CODIGO_AUTH_INVALIDO = 'A-2-042';
     const DATA_PASSADA = 'A-21-016';
     const DATA_INVALIDA = 'A-21-032';
     const FORMATO_INVALIDO = 'A-21-017';
@@ -48,4 +51,5 @@ class ResponseCode
     const CPF_INVALIDO = 'A-21-029';
     const EMAIL_INVALIDO = 'A-21-030';
     const DINHEIRO_INVALIDO = 'A-21-031';
+    const SENHAS_NAO_CONFEREM = 'A-21-041';
 }

@@ -31,8 +31,11 @@ class ResponseMessage
         ResponseCode::FALHA_AO_ATUALIZAR => 'Parece que o sistema não conseguiu atualizar o registro!',
         ResponseCode::FALHA_AO_DELETAR => 'Parece que o sistema não conseguiu deletar o registro!',
         ResponseCode::FALHA_AO_BUSCAR_DADOS => 'Parece que o sistema não conseguiu buscar o(s) registro(s)!',
+        ResponseCode::ERRO_SENHA => 'O sistema falhou em alterar a senha!',
 
             /* CLIENTE - 2 */
+        ResponseCode::CODIGO_AUTH_INVALIDO => 'Código de autenticação inválido!',
+        ResponseCode::USUARIO_NAO_ENCONTRADO => 'Usuário não encontrado!',
         ResponseCode::MUITAS_TENTATIVAS => 'Conta bloqueada temporariamente! Muitas tentativas de login.',
         ResponseCode::LOGIN_INVALIDO => 'E-mail ou senha inválido!',
         ResponseCode::LANCAMENTO_DUPLICADO => 'Possível lançamento duplicado detectado. Deseja continuar mesmo assim?',
@@ -51,6 +54,7 @@ class ResponseMessage
         ResponseCode::CPF_INVALIDO=> 'Insira um CPF válido!',
         ResponseCode::EMAIL_INVALIDO=> 'Insira um e-mail válido!',
         ResponseCode::DINHEIRO_INVALIDO=> 'Insira um valor válido!',
+        ResponseCode::SENHAS_NAO_CONFEREM=> 'As senhas informadas não conferem!',
     ];
 
     public static function get($code)

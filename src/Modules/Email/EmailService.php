@@ -7,6 +7,10 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 class EmailService extends \Core\Service
 {
+    public function __construct()
+    {
+    }
+
     public function enviarEmail($params)
     {
         $mail = new PHPMailer(true);
@@ -18,14 +22,15 @@ class EmailService extends \Core\Service
         $mail->send();
     }
 
-    public static function configurarEmail($mail)
+    private static function configurarEmail($mail)
     {
         $mail->isSMTP();
-        $mail->Host = $_ENV['EMAIL_HOST'];
+        $mail->CharSet = 'UTF-8';
         $mail->SMTPAuth = true;
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         // $mail->SMTPSecure = '';
         // $mail->SMTPAuth = false;
+        $mail->Host = $_ENV['EMAIL_HOST'];
         $mail->Username = $_ENV['EMAIL_USER'];
         $mail->Password = $_ENV['EMAIL_PASSWORD'];
         $mail->Port = $_ENV['EMAIL_PORT'];
@@ -33,7 +38,7 @@ class EmailService extends \Core\Service
         return $mail;
     }
 
-    public static function addDestinatarios($mail, $destinatarios)
+    private static function addDestinatarios($mail, $destinatarios)
     {
         $mail->setFrom($_ENV['EMAIL_USER'], 'Aspadi');
 
@@ -44,12 +49,27 @@ class EmailService extends \Core\Service
         return $mail;
     }
 
-    public static function construirMensagem($mail, $params)
+    private static function construirMensagem($mail, $params)
     {
         $mail->isHTML(true);
         $mail->Subject = $params['assunto'] ?? 'Aspadi - E-mail automatizado';
-        $mail->Body = $params['body'] ?? 'Se vc recebeu isso é pq o Renan conseguiu fazer o envio de e-mail a partir do protótipo inicial da Aspadi. Responda ele caso vc recebeu <3';
+        $mail->Body = self::carregarTemplate(($params['body'] ?? 'bodyPadrao'), $params);
 
         return $mail;
+    }
+
+    private static function carregarTemplate($templateNome, $dados = [])
+    {
+        $caminho = __DIR__ . "/templates/" . $templateNome . ".php";
+
+        if (!file_exists($caminho)) {
+            throw new \Exception("Template não encontrado: $templateNome");
+        }
+
+        extract($dados);
+
+        ob_start();
+        include $caminho;
+        return ob_get_clean();
     }
 }

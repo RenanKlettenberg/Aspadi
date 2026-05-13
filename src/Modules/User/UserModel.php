@@ -4,7 +4,7 @@ namespace Modules\User;
 class UserModel extends \Core\Model
 {
     CONST TABELA = 'system.sys_usuario';
-    CONST CAMPOS = ['usu_id', 'usu_nome', 'usu_email', 'usu_password'];
+    CONST CAMPOS = ['usu_id', 'usu_nome', 'usu_email', 'usu_codigo_auth_validade'];
     CONST CAMPOS_NOT_NULL = ['usu_nome', 'usu_email', 'usu_password'];
     CONST PK = 'usu_id';
 
