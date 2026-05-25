@@ -13,6 +13,6 @@ abstract class TestInterno extends TestCase
             $this->assertEquals($expectedCode, $erro->getInternalCode());
             return;
         }
-        $this->fail("O sistema deveria ter lançado uma ErroInterno ".$expectedCode.".");
+        $this->fail("O sistema sedeveria ter lançado um ErroInterno código: " . $expectedCode . ". Erro recebido: " . $erro->getMessage());
     }
 }
